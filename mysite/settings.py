@@ -123,4 +123,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = '/home/alexander/test_scheduler/mysite/static/'
+STATIC_ROOT = '/home/alexander/task_scheduler/mysite/static/'
