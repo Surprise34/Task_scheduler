@@ -1,7 +1,12 @@
 {% extends "base.html" %}
 {% block title %}Войти{% endblock %}
 {% block content %}
-  <h2>Войти</h2>
+  {% if user.is_authenticated %}
+  <div>
+  <h2>Вы уже авторизированы</h2>
+  </div>
+  {% else %}
+  <h2>Войти</h2>  
   <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
@@ -10,4 +15,5 @@
   <form>
 	<input type="button" value="Зарегистрироваться" onClick='location.href="/signup"'>
   </form>
+  {% endif %}
 {% endblock %}
