@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, re_path
 from django.contrib.auth import views as auth_views
 from django.views.generic.base import TemplateView
 from . import views as mysite_views
@@ -23,10 +23,10 @@ import task_scheduler.urls
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = [
-    path('login/', auth_views.login, {'template_name':'login.html'},name='login' ),
-    path('logout/',auth_views.logout,{'template_name':'logged_out.html'}, name='logout'),
-    path('signup/',mysite_views.signup, name='signup'),    
-    path('admin/', admin.site.urls),
+    re_path(r'^login/', auth_views.login, {'template_name':'login.html'},name='login' ),
+    re_path(r'^logout/',auth_views.logout,{'template_name':'logged_out.html'}, name='logout'),
+    re_path(r'^signup/',mysite_views.signup, name='signup'),    
+    re_path(r'^admin/', admin.site.urls),
     url(r'^', include (task_scheduler.urls)),
 ]
 

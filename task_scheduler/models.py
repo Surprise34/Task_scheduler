@@ -17,6 +17,7 @@ class Task(models.Model):
     )
     created_date = models.DateTimeField(default=timezone.now)
     duration = models.DurationField(default=timedelta(seconds=30))
+    is_done=models.BooleanField(default=False)
 
     class Meta:
         ordering = ('title', 'author',)

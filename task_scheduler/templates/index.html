@@ -4,5 +4,22 @@
 {% endblock %}
 {% block content %}
 	<body>
+		<div>
+			{% if user.is_authenticated %}
+				{% if not tasks.is_null  %}
+					{% for task in tasks %}
+						<div>
+							<h2>{{task.title}}</h2>
+							<p>{{task.description}}</p>
+							<p>started: {{task.created_date}}</p>						
+						</div>
+					{% endfor %}
+				{% else %}
+					<h2>Вы еще не создали ни одной задачи</h2>
+				{% endif %}
+			{% else %}
+				<h2>Пожалуйста авторизируйтесь, чтобы начать работать</h2>
+			{% endif %}
+		</div>
 	</body>	
 {% endblock %}

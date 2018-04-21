@@ -13,7 +13,7 @@
     <button type="submit">Войти</button>
   </form>
   <form>
-	<input type="button" value="Зарегистрироваться" onClick='location.href="/signup"'>
+	<input type="button" value="Зарегистрироваться" onClick='location.href="{% url 'signup' %}"'>
   </form>
   {% endif %}
 {% endblock %}
