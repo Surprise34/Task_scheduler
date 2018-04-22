@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}
+	Информация о {{ task.title }}
+{% endblock %}
+{% block content %}
+	<div>
+		<h2 align="center">{{ task.title }}</h2>
+		<p> 
+			Описание: <br>
+			{{task.description}}		
+		</p>
+		<p>Дата создания: {{task.created_date}}</p>
+		<p>Создано юзером: {{task.author}}</p>
+		<p>Duration: {{task.duration}}</p>
+		<p>Статус: {{task.is_done}}</p>		
+	</div>
+
+{% endblock %}

@@ -27,7 +27,7 @@ urlpatterns = [
     re_path(r'^logout/',auth_views.logout,{'template_name':'logged_out.html'}, name='logout'),
     re_path(r'^signup/',mysite_views.signup, name='signup'),    
     re_path(r'^admin/', admin.site.urls),
-    url(r'^', include (task_scheduler.urls)),
+    re_path(r'^', include (task_scheduler.urls)),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

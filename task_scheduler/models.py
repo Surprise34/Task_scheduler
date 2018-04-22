@@ -15,14 +15,14 @@ class Task(models.Model):
         null=True,
         on_delete = models.CASCADE
     )
-    created_date = models.DateTimeField(default=timezone.now)
-    duration = models.DurationField(default=timedelta(seconds=30))
-    is_done=models.BooleanField(default=False)
+    created_date = models.DateTimeField(verbose_name='Дата создания',default=timezone.now)
+    duration = models.DurationField(verbose_name='Продолжительность (в формате hh:mm:ss)',default=timedelta(seconds=30))
+    is_done=models.BooleanField(verbose_name='Статус',default=False)
 
     class Meta:
         ordering = ('title', 'author',)
-        verbose_name='Заголовок'
-        verbose_name_plural='Заголовки'
+        verbose_name='Задача'
+        verbose_name_plural='Задачи'
 
     def __str__(self):
         return self.title

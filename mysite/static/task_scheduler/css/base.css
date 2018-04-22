@@ -28,5 +28,6 @@ body{
 }
 
 .errorlist {
-	display: none;
+	color: #901502;
+	font: 1.4em Arial, sans-serif;
 }

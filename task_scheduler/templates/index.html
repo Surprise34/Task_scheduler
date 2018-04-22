@@ -6,16 +6,18 @@
 	<body>
 		<div>
 			{% if user.is_authenticated %}
-				{% if not tasks.is_null  %}
+				{% if tasks|length == 0  %}
+					<div>
+						<h2>Вы еще не создали ни одной задачи</h2>
+					</div>
+				{% else %}
 					{% for task in tasks %}
 						<div>
-							<h2>{{task.title}}</h2>
+							<h2><a href="{% url 'task_detail' task.id %}">{{task.title}}</a></h2>
 							<p>{{task.description}}</p>
 							<p>started: {{task.created_date}}</p>						
 						</div>
 					{% endfor %}
-				{% else %}
-					<h2>Вы еще не создали ни одной задачи</h2>
 				{% endif %}
 			{% else %}
 				<h2>Пожалуйста авторизируйтесь, чтобы начать работать</h2>

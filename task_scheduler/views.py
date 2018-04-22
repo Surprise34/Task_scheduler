@@ -1,14 +1,13 @@
-from django.shortcuts import render
+from django.shortcuts import render, render_to_response, redirect
 from .models import Task
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from datetime import timedelta
 from django.utils import timezone
+from .forms import TaskForm
+from django.http import HttpResponse, Http404
 
 # Create your views here.
-
-def index(request):
-    return render(request, 'index.html')
 
 def tasks_list(request):
     if request.user.is_authenticated:
@@ -19,7 +18,7 @@ def tasks_list(request):
             }
         )
     else:
-        return index(request)
+        return render(request, 'index.html')
 
 @login_required
 def task_detail(request , task_id):
@@ -32,7 +31,6 @@ def task_detail(request , task_id):
     return render(
         request, 'task_detail.html',{
             'task':task,
-            'user':user
         }
     )
 
@@ -41,24 +39,10 @@ def task_create(request):
     if request.method == 'POST':
         form = TaskForm(request.POST)
         if form.is_valid():
-            title_raw = form.cleaned_data['title_raw']
-            description_raw = form. cleaned_data['description_raw']
-            author1 = request.user
-            if form.cleaned_data['duration_raw']!=None:
-                t = Task(
-                    title=title_raw,
-                    description=descriprion_raw,
-                    author=author1,
-                    duration=form.cleaned_data['duration_raw'],
-                )
-            else:
-                t = Task(
-                    title=title_raw,
-                    description=descriprion_raw,
-                    author=author1,
-                )
-            t.save()
-            return render(request, 'index.html')
+            task = form.save(commit=False)
+            task.author = request.user
+            task.save()
+            return redirect(tasks_list)
     else:
         form = TaskForm()
     return render (
