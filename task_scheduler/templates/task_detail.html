@@ -9,10 +9,38 @@
 			Описание: <br>
 			{{task.description}}		
 		</p>
-		<p>Дата создания: {{task.created_date}}</p>
 		<p>Создано юзером: {{task.author}}</p>
-		<p>Duration: {{task.duration}}</p>
-		<p>Статус: {{task.is_done}}</p>		
+		<p>Дата создания: {{task.created_date}}</p>		
+		<p>Продолжительность: {{task.duration}}</p>
+		
+		
+		{% if not task.is_done %}
+			<div id="myProgress">
+  				<div id="myBar">{{ per }}%</div>
+			</div>			
+ 			<script type="text/javascript">
+				function move() {
+				  var elem = document.getElementById("myBar");   
+				  var width = "{{ per }}";
+				  elem.style.width = width + '%'; 
+				  var id = setInterval(frame, "{{speed}}");
+				  function frame() {
+					if (width >= 100) {
+					  clearInterval(id);
+					} else {
+					  width++; 
+					  elem.style.width = width + '%'; 
+					  elem.innerHTML = width * 1  + '%';
+					}
+				  }
+				}
+				window.onload = move;
+			</script>
+			<p>Статус: <span style="color: #901502;">В процессе</span>
+			</p>
+		{% else %}
+			<p>Статус: <span style="color: #0f0;font:1.25em Arial; text-shadow:black 0 0 1px;">Выполнено</span></p>
+		{% endif %}	
 	</div>
 
 {% endblock %}

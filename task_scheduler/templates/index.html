@@ -15,7 +15,8 @@
 						<div>
 							<h2><a href="{% url 'task_detail' task.id %}">{{task.title}}</a></h2>
 							<p>{{task.description}}</p>
-							<p>started: {{task.created_date}}</p>						
+							<p>started: {{task.created_date}}</p>
+							<br>						
 						</div>
 					{% endfor %}
 				{% endif %}
