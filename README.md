@@ -1,5 +1,6 @@
 # task_scheduler
 Grid-Cloud spring 2018
+https://imgur.com/a/uNvkgrE
 
 # How to start work with app:
 Was using PostgreSQL as db, so u have to install it to work with application.
